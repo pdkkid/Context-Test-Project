@@ -1,20 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createGlobalStyle } from 'styled-components';
-import { App } from './components/App';
+import { App } from './app';
 
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    background: #1A1B25;
-    font-family: "Open Sans", sans-serif !important;
+    background-color: #ababab;
   }
 `
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle/>
-    <h1>Context-Demo</h1>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
