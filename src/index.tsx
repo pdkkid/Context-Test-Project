@@ -6,7 +6,7 @@ import { App } from './app';
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    background-color: #ababab;
+    background-color: rgba(1, 42, 74, 0.2);
   }
 `
 

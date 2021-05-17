@@ -1,6 +1,6 @@
-import { TabContainer, TabHeader, StyledTab } from "./tab-controller.styles";
+import { TabContainer, TabHeader } from "./tab-controller.styles";
 import { DefaultTabs } from "./tabs";
-import { Fragment, useContext } from "react";
+import { useContext } from "react";
 import { AppContext } from "../../app-context";
 
 export const TabController = (): JSX.Element => {
@@ -25,9 +25,7 @@ export const TabController = (): JSX.Element => {
           {x.label}
         </TabHeader>
       ))}
-      <StyledTab>
-          {tabs[selectedTab].content(app)}
-      </StyledTab>
+      {tabs[selectedTab].content(app)}
     </TabContainer>
   );
 };

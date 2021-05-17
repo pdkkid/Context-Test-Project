@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const TabContainer = styled.div<{fontSize: string}>`
   font-size: ${props => props.fontSize};
   border: 1px solid black;
-  margin-left: 10%;
   height: 75vh;
   width: 80%;
 `;
@@ -17,5 +16,3 @@ export const TabHeader = styled.button<{ selected: boolean }>`
         background-color: red;
     `}
 `;
-
-export const StyledTab = styled.div``;

@@ -1,22 +1,31 @@
 import React, { useContext } from "react";
-import { Color, SelectorContainer, FontSelector } from ".";
+import { Color, SelectorContainer, NameSelector, ColorSelector, FontSelector } from ".";
 import { AppContext } from "../../app-context";
 
 export const DefaultColors: string[] = [
-  "#92140C",
-  "#353238",
-  "#BE5A38",
-  "#F9C74F",
-  "#90BE6D",
-  "#43AA8B",
-  "#577590",
+  "#335C67",
+  "#60935D",
+  "#E09F3E",
+  "#907F9F",
+  "#EF476F",
+  "#9E2A2B",
+  "#ba2477",
 ];
 
 export const Selector = (): JSX.Element => {
   const { app, setAppState } = useContext(AppContext);
 
   const handleFontChange = (size: number) => {
-    setAppState({ ...app, fontSize: Number(size.toFixed(1)) });
+    switch (Math.sign(size)) {
+      case -1: {
+        size > 0 && setAppState({ ...app, fontSize: Number(size.toFixed(1)) });
+        break;
+      }
+      case 1: {
+        size <= 3 && setAppState({ ...app, fontSize: Number(size.toFixed(1)) });
+        break;
+      }
+    }
   };
 
   const handleNameChange = (name: string) => {
@@ -25,26 +34,36 @@ export const Selector = (): JSX.Element => {
 
   return (
     <SelectorContainer>
-      <h1>{app.name ? app.name + "'s" : "Your"} React Context Demo</h1>
-      <input
-        type="text"
-        onChange={(event) => handleNameChange(event.target.value)}
-      />
-      <FontSelector>
-        <button onClick={() => handleFontChange(app.fontSize + 0.1)}>+</button>
-        {app.fontSize + "em"}
-        <button onClick={() => handleFontChange(app.fontSize - 0.1)}>-</button>
-      </FontSelector>
-
-      {DefaultColors.map((x) => (
-        <Color
-          onClick={() => {
-            setAppState({ ...app, color: x });
-          }}
-          selected={app.color === x}
-          fill={x}
-        />
-      ))}
+        <NameSelector>
+          <textarea
+            rows={1}
+            cols={10}
+            wrap="off"
+            placeholder="Name"
+            autoCapitalize="words"
+            onBlur={(event) => handleNameChange(event.target.value)}
+          />
+        </NameSelector>
+        <FontSelector>
+          <button onClick={() => handleFontChange(app.fontSize - 0.1)}>
+            {"<"}
+          </button>
+          <span>{app.fontSize + " em"}</span>
+          <button onClick={() => handleFontChange(app.fontSize + 0.1)}>
+            {">"}
+          </button>
+        </FontSelector>
+        <ColorSelector>
+          {DefaultColors.map((x) => (
+            <Color
+              onClick={() => {
+                setAppState({ ...app, color: x });
+              }}
+              selected={app.color === x}
+              fill={x}
+            />
+          ))}
+        </ColorSelector>
     </SelectorContainer>
   );
 };

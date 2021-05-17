@@ -6,10 +6,11 @@ import { TabController } from "../components/tab-controller";
 
 export const Main = (): JSX.Element => {
   const context = useContext(AppContext);
-  const { color } = context.app;
+  const { color, name } = context.app;
 
   return (
     <MainContainer color={color!}>
+      <h1>{name && name + "'s "} React Context Demo</h1>
       <Selector />
       <TabController />
     </MainContainer>
