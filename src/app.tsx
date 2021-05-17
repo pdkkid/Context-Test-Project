@@ -6,7 +6,7 @@ export const App = (): JSX.Element => {
   const [app, setAppState] = useState<AppState>({
     color: "#92140C",
     fontSize: 1,
-    selectedTab: "Content",
+    selectedTab: 0,
   });
 
   const context: AppContextType = { app, setAppState };

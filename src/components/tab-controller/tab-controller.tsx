@@ -1,35 +1,33 @@
 import { TabContainer, TabHeader, StyledTab } from "./tab-controller.styles";
 import { DefaultTabs } from "./tabs";
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import { AppContext } from "../../app-context";
 
 export const TabController = (): JSX.Element => {
   const { app, setAppState } = useContext(AppContext);
-  const { selectedTab } = app;
+  const { selectedTab, fontSize } = app;
 
   const tabs = DefaultTabs.map((x) => x);
 
-  const handleTabChange = (newTab: string) => {
-    setAppState({ ...app, selectedTab: newTab });
+  const handleTabChange = (newTabIndex: number) => {
+    setAppState({ ...app, selectedTab: newTabIndex });
   };
 
   return (
-    <TabContainer>
-      {tabs.map((x) => (
+    <TabContainer fontSize={fontSize + "em"}>
+      {tabs.map((x, i) => (
         <TabHeader
           onClick={() => {
-            handleTabChange(x.label);
+            handleTabChange(i);
           }}
-          selected={selectedTab === x.label}
+          selected={selectedTab === i}
         >
           {x.label}
         </TabHeader>
       ))}
-      {tabs.map((x) => {
-        return x.label === selectedTab ? (
-          <StyledTab>{x.content}</StyledTab>
-        ) : null;
-      })}
+      <StyledTab>
+          {tabs[selectedTab].content(app)}
+      </StyledTab>
     </TabContainer>
   );
 };

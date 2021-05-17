@@ -3,7 +3,7 @@ import { createContext } from "react";
 export interface AppState {
   color?: string;
   name?: string;
-  selectedTab?: string;
+  selectedTab: number;
   fontSize: number;
 }
 
@@ -13,6 +13,6 @@ export interface AppContextType {
 }
 
 export const AppContext = createContext<AppContextType>({
-  app: { fontSize: 1 },
+  app: { fontSize: 1, selectedTab: 0 },
   setAppState: () => {},
 });
