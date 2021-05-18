@@ -5,7 +5,7 @@ import { Main } from "./pages/main";
 export const App = (): JSX.Element => {
   const [app, setAppState] = useState<AppState>({
     color: "#335C67",
-    fontSize: 1,
+    fontSize: 1.5,
     selectedTab: 0,
   });
 

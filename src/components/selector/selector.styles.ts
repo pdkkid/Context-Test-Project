@@ -11,7 +11,7 @@ export const SelectorContainer = styled.div`
   max-width: 25%;
   flex-direction: row;
   justify-content: space-evenly;
-  border: 3px solid rgba(1, 42, 74, 0.2);
+  border: 3.5px solid rgba(1, 42, 74, 0.3);
   border-radius: 10px;
   background-color: rgba(1, 42, 74, 0.1);
 `;
@@ -29,7 +29,7 @@ const Selector = styled.div`
 
 export const NameSelector = styled(Selector)`
   flex: 1;
-  textarea {
+  input {
     color: inherit;
     font-weight: 700;
     font-family: inherit;
