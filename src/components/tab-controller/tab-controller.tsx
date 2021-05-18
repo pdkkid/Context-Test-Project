@@ -1,6 +1,10 @@
-import { TabContainer, TabHeader } from "./tab-controller.styles";
+import {
+  TabContainer,
+  TabHeader,
+  HeaderContainer,
+} from "./tab-controller.styles";
 import { DefaultTabs } from "./tabs";
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import { AppContext } from "../../app-context";
 
 export const TabController = (): JSX.Element => {
@@ -14,18 +18,20 @@ export const TabController = (): JSX.Element => {
   };
 
   return (
-    <TabContainer fontSize={fontSize + "em"}>
-      {tabs.map((x, i) => (
-        <TabHeader
-          onClick={() => {
-            handleTabChange(i);
-          }}
-          selected={selectedTab === i}
-        >
-          {x.label}
-        </TabHeader>
-      ))}
-      {tabs[selectedTab].content(app)}
-    </TabContainer>
+    <Fragment>
+      <HeaderContainer>
+        {tabs.map((x, i) => (
+          <TabHeader
+            onClick={() => {
+              handleTabChange(i);
+            }}
+            selected={selectedTab === i}
+          >
+            {x.label}
+          </TabHeader>
+        ))}
+      </HeaderContainer>
+      <TabContainer fontSize={fontSize + "em"}>{tabs[selectedTab].content(app)}</TabContainer>
+    </Fragment>
   );
 };
